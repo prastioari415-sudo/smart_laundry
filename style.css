@@ -1,5 +1,5 @@
 /* ======================================
-   BAGIAN A: PENGATURAN DASAR & PENTING
+   PENGATURAN DASAR
    ====================================== */
 * {
     margin: 0;
@@ -8,81 +8,85 @@
     font-family: Arial, sans-serif;
 }
 
-body {
+html, body {
     margin: 0;
-    overflow-x: hidden; /* ❌ Cegah layar bisa digeser ke samping */
-}
-
-/* ✅ WAJIB ADA: Supaya ukuran layar terbaca benar di HP */
-html {
-    font-size: 16px;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 /* ======================================
-   BAGIAN B: LATAR BELAKANG — SELALU MUAT PENUH & TIDAK TERPOTONG
+   LATAR BELAKANG — OTOMATIS PILIH GAMBAR
    ====================================== */
 .latar-utama {
-    width: 100%;
-    min-height: 100vh; /* ✅ Tinggi SELALU pas sama tinggi layar yang dipakai */
-
-    /* Gambar latar kamu */
-    background-image: url("dola.jpeg");
-    background-size: 100% 100%; /* ✅ Lebar & tinggi pas persis, tidak ada bagian hilang */
+    width: 100vw;
+    height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
-
-    /* ✅ Susunan otomatis berubah: di komputer kiri-kanan, di HP atas-bawah */
+    background-color: #0090ff;
     display: flex;
-    flex-wrap: wrap; /* ✅ Kalau tidak muat, otomatis pindah ke bawah */
     justify-content: space-between;
     align-items: flex-start;
-    padding: 4% 5%; /* ✅ Jarak dari pinggir otomatis pas di semua ukuran */
+    padding: 0;
+    position: relative;
+}
+
+/* 📱 KHUSUS HP & LAYAR KECIL */
+@media (max-width: 768px) {
+    .latar-utama {
+        background-image: url("hp.png");
+        background-size: contain;
+    }
+}
+
+/* 💻 KHUSUS KOMPUTER & LAYAR BESAR */
+@media (min-width: 769px) {
+    .latar-utama {
+        background-image: url("dekstop.png");
+        background-size: 100% 100%;
+    }
 }
 
 /* ======================================
-   BAGIAN C: TULISAN JUDUL — UKURAN OTOMATIS
+   TULISAN JUDUL — POSISI TETAP
    ====================================== */
 .judul-kiri {
+    position: absolute;
+    top: 3%;
+    left: 3%;
     color: white;
     text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-    flex: 1 1 300px; /* ✅ Lebar fleksibel: 300px ke atas */
-    min-width: 250px;
 }
 
 .judul-kiri h1 {
-    /* ✅ Ukuran berubah sendiri: terkecil 32px, terbesar 52px, menyesuaikan layar */
-    font-size: clamp(32px, 7vw, 52px);
+    font-size: clamp(42px, 9vw, 78px);
     font-weight: bold;
     line-height: 1.1;
 }
 
 .judul-kiri h2 {
-    font-size: clamp(28px, 6vw, 48px);
+    font-size: clamp(38px, 8vw, 72px);
     font-weight: bold;
     line-height: 1.1;
 }
 
 /* ======================================
-   BAGIAN D: TOMBOL MENU — POSISI & UKURAN SELALU RAPI
+   TOMBOL MENU — POSISI TETAP
    ====================================== */
 .menu-kanan {
+    position: absolute;
+    top: 38%;
+    right: 8%;
     display: flex;
     flex-direction: column;
-    gap: clamp(15px, 3vw, 25px); /* ✅ Jarak antar tombol otomatis pas */
-    margin-top: clamp(40px, 10%, 100px); /* ✅ Jarak dari atas otomatis pas */
-    flex: 1 1 280px; /* ✅ Lebar fleksibel */
-    min-width: 250px;
-    align-items: center;
+    gap: clamp(18px, 4vw, 28px);
 }
 
-/* ======================================
-   BAGIAN E: GAYA TOMBOL — LEBAR SERAGAM & OTOMATIS
-   ====================================== */
 .tombol-menu, .tombol-pesan {
-    /* ✅ Lebar tombol: terkecil 240px, terbesar 320px, pas di mana saja */
-    width: clamp(240px, 70%, 320px);
-    padding: clamp(12px, 2vw, 18px) clamp(15px, 3vw, 20px);
-    font-size: clamp(16px, 3.5vw, 20px);
+    width: clamp(220px, 45vw, 340px);
+    padding: clamp(12px, 2.5vw, 20px) clamp(15px, 3vw, 22px);
+    font-size: clamp(15px, 3.2vw, 20px);
     font-weight: bold;
     color: white;
     border: 3px solid white;
@@ -113,7 +117,7 @@ html {
 }
 
 /* ======================================
-   BAGIAN F: KOTAK INFORMASI — SELALU PAS DI TENGAH
+   KOTAK INFORMASI
    ====================================== */
 .kotak-info {
     display: none;
@@ -127,7 +131,7 @@ html {
     border: 4px solid #0066cc;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
     width: 90%;
-    max-width: 400px; /* ✅ Tidak terlalu lebar di layar besar */
+    max-width: 400px;
     z-index: 999;
 }
 
@@ -147,9 +151,6 @@ html {
     line-height: 1.6;
 }
 
-/* ======================================
-   BAGIAN G: TOMBOL TUTUP KOTAK
-   ====================================== */
 .tutup {
     position: absolute;
     top: 10px;
@@ -165,19 +166,10 @@ html {
 }
 
 /* ======================================
-   BAGIAN H: PENGATURAN KHUSUS — OTOMATIS UBAH SUSUNAN
+   PENTING: TATA LETAK TETAP SAMA
    ====================================== */
 @media (max-width: 768px) {
-    /* ✅ Di HP & Tablet: susunan jadi atas-bawah, rata tengah */
     .latar-utama {
-        flex-direction: column;
-        justify-content: flex-start;
-        text-align: center;
-        padding: 5% 3%;
-    }
-
-    .menu-kanan {
-        margin-top: 20px;
-        width: 100%;
+        flex-direction: row !important;
     }
 }
