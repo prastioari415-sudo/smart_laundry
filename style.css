@@ -35,7 +35,7 @@ html, body {
 /* 📱 KHUSUS HP & LAYAR KECIL */
 @media (max-width: 768px) {
     .latar-utama {
-        background-image: url("hp.png");
+        background-image: url("Hp.png");
         background-size: contain;
     }
 }
@@ -43,7 +43,7 @@ html, body {
 /* 💻 KHUSUS KOMPUTER & LAYAR BESAR */
 @media (min-width: 769px) {
     .latar-utama {
-        background-image: url("dekstop.png");
+        background-image: url("Dekstop.png");
         background-size: 100% 100%;
     }
 }
