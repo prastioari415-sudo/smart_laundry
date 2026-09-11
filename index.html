@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- ======================================
+         BAGIAN 1: PENGATURAN DASAR WEBSITE
+         ====================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Laundry</title>
+
+    <!-- ======================================
+         BAGIAN 2: MENGHUBUNGKAN TAMPILAN
+         ====================================== -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ======================================
+         BAGIAN 3: LATAR BELAKANG & ISI UTAMA
+         ====================================== -->
+    <div class="latar-utama">
+
+        <!-- BAGIAN 3.1: JUDUL DI KIRI ATAS -->
+        <div class="judul-kiri">
+            <h1></h1>
+            <h2></h2>
+        </div>
+
+        <!-- BAGIAN 3.2: MENU TOMBOL DI SEBELAH KANAN -->
+        <div class="menu-kanan">
+            <button class="tombol-menu" onclick="tampilInfo('reguler')">📋 Reguler</button>
+            <button class="tombol-menu" onclick="tampilInfo('express')">⚡ Express</button>
+            <a href="https://wa.me/6282283201995?text=Halo%20Smart%20Laundry!%20Saya%20ingin%20memesan%20layanan." 
+               target="_blank" 
+               class="tombol-pesan">💬 Pesan Sekarang</a>
+        </div>
+
+    </div>
+
+    <!-- ======================================
+         BAGIAN 4: KOTAK INFORMASI (MUNCUL SAAT TOMBOL DIKLIK)
+         ====================================== -->
+    <div id="kotakInfo" class="kotak-info">
+        <span class="tutup" onclick="tutupInfo()">&times;</span>
+        <h3 id="judulInfo"></h3>
+        <div id="isiInfo"></div>
+    </div>
+
+    <!-- ======================================
+         BAGIAN 5: MENGHUBUNGKAN FUNGSI
+         ====================================== -->
+    <script src="script.js"></script>
+</body>
+</html>
