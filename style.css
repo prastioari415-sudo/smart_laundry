@@ -1,5 +1,5 @@
 /* ======================================
-   BAGIAN A: PENGATURAN UMUM
+   BAGIAN A: PENGATURAN DASAR & PENTING
    ====================================== */
 * {
     margin: 0;
@@ -10,71 +10,91 @@
 
 body {
     margin: 0;
-    overflow-x: hidden;
+    overflow-x: hidden; /* ❌ Cegah layar bisa digeser ke samping */
+}
+
+/* ✅ WAJIB ADA: Supaya ukuran layar terbaca benar di HP */
+html {
+    font-size: 16px;
 }
 
 /* ======================================
-   BAGIAN B: LATAR BELAKANG PAKAI GAMBAR KAMU
+   BAGIAN B: LATAR BELAKANG — SELALU MUAT PENUH & TIDAK TERPOTONG
    ====================================== */
 .latar-utama {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100vh; /* ✅ Tinggi SELALU pas sama tinggi layar yang dipakai */
 
-    /* 👇 Gambar latar belakang kamu 👇 */
+    /* Gambar latar kamu */
     background-image: url("dola.jpeg");
-    background-size: cover;
+    background-size: 100% 100%; /* ✅ Lebar & tinggi pas persis, tidak ada bagian hilang */
     background-position: center;
     background-repeat: no-repeat;
 
-    /* Susunan: judul di kiri, tombol di kanan */
+    /* ✅ Susunan otomatis berubah: di komputer kiri-kanan, di HP atas-bawah */
     display: flex;
+    flex-wrap: wrap; /* ✅ Kalau tidak muat, otomatis pindah ke bawah */
     justify-content: space-between;
-    padding: 40px 60px;
+    align-items: flex-start;
+    padding: 4% 5%; /* ✅ Jarak dari pinggir otomatis pas di semua ukuran */
 }
 
 /* ======================================
-   BAGIAN C: TULISAN JUDUL DI KIRI
+   BAGIAN C: TULISAN JUDUL — UKURAN OTOMATIS
    ====================================== */
 .judul-kiri {
     color: white;
     text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    flex: 1 1 300px; /* ✅ Lebar fleksibel: 300px ke atas */
+    min-width: 250px;
 }
 
 .judul-kiri h1 {
-    font-size: 52px;
+    /* ✅ Ukuran berubah sendiri: terkecil 32px, terbesar 52px, menyesuaikan layar */
+    font-size: clamp(32px, 7vw, 52px);
     font-weight: bold;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .judul-kiri h2 {
-    font-size: 48px;
+    font-size: clamp(28px, 6vw, 48px);
     font-weight: bold;
+    line-height: 1.1;
 }
 
 /* ======================================
-   BAGIAN D: TATA LETAK TOMBOL DI KANAN
+   BAGIAN D: TOMBOL MENU — POSISI & UKURAN SELALU RAPI
    ====================================== */
 .menu-kanan {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-top: 80px;
+    gap: clamp(15px, 3vw, 25px); /* ✅ Jarak antar tombol otomatis pas */
+    margin-top: clamp(40px, 10%, 100px); /* ✅ Jarak dari atas otomatis pas */
+    flex: 1 1 280px; /* ✅ Lebar fleksibel */
+    min-width: 250px;
+    align-items: center;
 }
 
 /* ======================================
-   BAGIAN E: GAYA TOMBOL MENU
+   BAGIAN E: GAYA TOMBOL — LEBAR SERAGAM & OTOMATIS
    ====================================== */
-.tombol-menu {
-    padding: 15px 30px;
-    font-size: 18px;
+.tombol-menu, .tombol-pesan {
+    /* ✅ Lebar tombol: terkecil 240px, terbesar 320px, pas di mana saja */
+    width: clamp(240px, 70%, 320px);
+    padding: clamp(12px, 2vw, 18px) clamp(15px, 3vw, 20px);
+    font-size: clamp(16px, 3.5vw, 20px);
     font-weight: bold;
     color: white;
-    background: linear-gradient(135deg, #0099ff, #0066cc);
     border: 3px solid white;
     border-radius: 12px;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
+    text-align: center;
+}
+
+.tombol-menu {
+    background: linear-gradient(135deg, #0099ff, #0066cc);
 }
 
 .tombol-menu:hover {
@@ -82,22 +102,9 @@ body {
     background: linear-gradient(135deg, #00ccff, #0099ff);
 }
 
-/* ======================================
-   BAGIAN F: TOMBOL PESAN SEKARANG (WARNA HIJAU WA)
-   ====================================== */
 .tombol-pesan {
-    padding: 15px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
     background: linear-gradient(135deg, #25d366, #128c7e);
-    border: 3px solid white;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;
     text-decoration: none;
-    text-align: center;
 }
 
 .tombol-pesan:hover {
@@ -106,42 +113,42 @@ body {
 }
 
 /* ======================================
-   BAGIAN G: KOTAK INFORMASI (MUNCUL SAAT DIKLIK)
+   BAGIAN F: KOTAK INFORMASI — SELALU PAS DI TENGAH
    ====================================== */
 .kotak-info {
-    display: none; /* Awalnya tersembunyi */
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    padding: 30px;
+    padding: clamp(20px, 5vw, 30px);
     border-radius: 15px;
     border: 4px solid #0066cc;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
     width: 90%;
-    max-width: 400px;
+    max-width: 400px; /* ✅ Tidak terlalu lebar di layar besar */
     z-index: 999;
 }
 
 .kotak-info h3 {
     color: #0066cc;
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin-bottom: 15px;
+    font-size: clamp(20px, 4vw, 24px);
     border-bottom: 2px solid #0066cc;
     padding-bottom: 10px;
 }
 
 .kotak-info p {
-    font-size: 17px;
-    margin: 10px 0;
+    font-size: clamp(15px, 3vw, 17px);
+    margin: 8px 0;
     color: #333;
     line-height: 1.6;
 }
 
 /* ======================================
-   BAGIAN H: TOMBOL TANDA SILANG (TUTUP KOTAK)
+   BAGIAN G: TOMBOL TUTUP KOTAK
    ====================================== */
 .tutup {
     position: absolute;
@@ -155,4 +162,22 @@ body {
 
 .tutup:hover {
     color: red;
+}
+
+/* ======================================
+   BAGIAN H: PENGATURAN KHUSUS — OTOMATIS UBAH SUSUNAN
+   ====================================== */
+@media (max-width: 768px) {
+    /* ✅ Di HP & Tablet: susunan jadi atas-bawah, rata tengah */
+    .latar-utama {
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: center;
+        padding: 5% 3%;
+    }
+
+    .menu-kanan {
+        margin-top: 20px;
+        width: 100%;
+    }
 }
